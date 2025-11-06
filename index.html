@@ -1,64 +1,145 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>AI 기반 스마트 화학 정화 시스템</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CHEM·AI · 스마트 수처리 실험실</title>
+<link rel="stylesheet" href="style.css" />
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <header class="hero">
-    <h1>AI × 화학공학 = 지속 가능한 물 정화</h1>
-    <p>스마트 흡착 공정과 인공지능 제어로 미세플라스틱을 줄이다</p>
-    <button onclick="scrollToSection('idea')">아이디어 보기</button>
+  <header class="topbar">
+    <div class="brand">CHEM·AI Lab</div>
+    <nav>
+      <button data-scroll="hero">홈</button>
+      <button data-scroll="mechanism">메커니즘</button>
+      <button data-scroll="sim">시뮬레이터</button>
+      <button data-scroll="reflection">성찰</button>
+    </nav>
   </header>
 
-  <section id="problem" class="section">
-    <h2>1. 문제의식</h2>
-    <p>
-      미세플라스틱은 전 세계 수계 생태계의 주요 오염원이다. 
-      크기가 작아 제거가 어렵고, 생물 체내 축적을 통해 먹이사슬 전반에 영향을 미친다.
-      화학공학은 흡착, 촉매, 분리 기술을 통해 이를 줄일 수 있는 실질적 방법을 제공한다.
-    </p>
-  </section>
+  <main class="wrap">
+    <!-- HERO: 시각적 임팩트 + 간단한 미션 -->
+    <section id="hero" class="panel hero">
+      <canvas id="waveCanvas" class="wave"></canvas>
+      <div class="hero-inner">
+        <h1>AI 기반 스마트 수처리 — 실험실 체험</h1>
+        <p>당신은 화학공학자입니다. 센서 데이터로 공정을 최적화하여 미세플라스틱과 오염물질을 제거하세요.</p>
+        <div class="hero-cta">
+          <button id="startBtn" class="btn">실험 시작</button>
+          <button id="tutorialBtn" class="btn ghost">튜토리얼 보기</button>
+        </div>
+        <div class="mission">
+          <strong>미션</strong> : 60분 시뮬레이션에서 제거율 75% 이상 달성하면 배지(achievement) 획득
+        </div>
+      </div>
+    </section>
 
-  <section id="idea" class="section">
-    <h2>2. 핵심 아이디어</h2>
-    <p>
-      AI 기반 스마트 정화 시스템은 수질 센서 데이터를 분석해 실시간으로 반응 조건을 조절한다.
-      온도·pH·흡착제 농도 등을 자동 제어해 효율과 에너지 절감을 동시에 달성한다.
-    </p>
-    <div class="interactive">
-      <h3>AI 정화 시뮬레이터</h3>
-      <p>슬라이더를 조정해 오염도를 바꿔보세요.</p>
-      <input id="pollution" type="range" min="0" max="100" value="50" />
-      <div id="water" class="water"></div>
-    </div>
-  </section>
+    <!-- MECHANISMS: 상세 메커니즘 (클릭 가능한 카드) -->
+    <section id="mechanism" class="panel">
+      <h2>화학적 메커니즘</h2>
+      <div class="cards">
+        <div class="card" data-mech="ads">
+          <h3>흡착(Adsorption)</h3>
+          <p>표면적 큰 흡착제로 미세플라스틱 포집. pH·표면개질 중요.</p>
+          <button class="infoBtn">자세히</button>
+        </div>
+        <div class="card" data-mech="photo">
+          <h3>광촉매(Photocatalysis)</h3>
+          <p>광촉매로 고분자 사슬 분해. 빛과 촉매 표면 결합이 관건.</p>
+          <button class="infoBtn">자세히</button>
+        </div>
+        <div class="card" data-mech="electro">
+          <h3>전기화학(Electrochemical)</h3>
+          <p>전기분해·전기응집으로 분산입자 집합화 및 분해.</p>
+          <button class="infoBtn">자세히</button>
+        </div>
+      </div>
+    </section>
 
-  <section id="structure" class="section">
-    <h2>3. 웹페이지 구현 요약</h2>
-    <ul>
-      <li>문제 제시 – 오염 현황 인포그래픽</li>
-      <li>아이디어 – AI 제어 원리 다이어그램</li>
-      <li>시뮬레이션 – 정화 효과 시각화</li>
-      <li>한계 – 데이터 단순화</li>
-    </ul>
-    <blockquote>“AI가 실시간으로 반응 조건을 조절하여 미세플라스틱 제거 효율을 30% 향상시켰습니다.”</blockquote>
-  </section>
+    <!-- SIMULATOR: 복잡한 파라미터와 흐름도, 차트 -->
+    <section id="sim" class="panel">
+      <h2>시뮬레이터</h2>
+      <div class="layout-sim">
+        <aside class="controls">
+          <h4>공정 파라미터</h4>
+          <label>유속 (L/min)
+            <input id="flow" type="range" min="10" max="200" value="60"/>
+            <span class="val" id="flowVal">60</span>
+          </label>
 
-  <section id="reflection" class="section">
-    <h2>4. 성찰</h2>
-    <p>
-      화학공학은 단순한 공정 제어가 아닌, 데이터 기반 지속가능성 구현의 핵심이다.
-      이번 프로젝트를 통해 기술과 환경이 융합될 때 가능한 변화를 체감했다.
-    </p>
-  </section>
+          <label>pH
+            <input id="pH" type="range" min="3" max="11" step="0.1" value="7.0"/>
+            <span class="val" id="pHVal">7.0</span>
+          </label>
 
-  <footer>
-    <p>© 2025 AI Eco Clean Project | Created with HTML · CSS · JS</p>
+          <label>온도 (℃)
+            <input id="temp" type="range" min="5" max="60" value="25"/>
+            <span class="val" id="tempVal">25</span>
+          </label>
+
+          <label>흡착제 (g/L)
+            <input id="ads" type="range" min="0" max="12" step="0.1" value="2.0"/>
+            <span class="val" id="adsVal">2.0</span>
+          </label>
+
+          <label>광원 세기 (0-1)
+            <input id="light" type="range" min="0" max="1" step="0.01" value="0.4"/>
+            <span class="val" id="lightVal">0.40</span>
+          </label>
+
+          <div class="btns">
+            <button id="aiRec" class="btn">AI 추천</button>
+            <button id="run" class="btn">시뮬레이션 실행</button>
+            <button id="reset" class="btn ghost">초기화</button>
+          </div>
+
+          <div class="meta">
+            <p>예상 제거율: <strong id="pred">-</strong></p>
+            <p>점수(효율-비용): <strong id="score">-</strong></p>
+            <button id="export" class="btn ghost">CSV 내보내기</button>
+          </div>
+        </aside>
+
+        <div class="vis">
+          <div class="flow-diagram" id="flowDiag" aria-label="공정 흐름도">
+            <!-- node svg injected by JS -->
+          </div>
+
+          <div class="chart-wrap">
+            <canvas id="chartSim"></canvas>
+          </div>
+
+          <div class="log" id="logArea" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFLECTION -->
+    <section id="reflection" class="panel">
+      <h2>성찰 · 제출 자료</h2>
+      <p>이 프로젝트는 화학공학의 공정·물성·제어 기술이 환경 문제 해결에 직접 연결됨을 보여준다. 제출용 보고서와 슬라이드 템플릿을 자동 생성할 수 있다.</p>
+      <div class="report-actions">
+        <button id="genReport" class="btn">보고서 생성 (TXT)</button>
+        <button id="downloadSlide" class="btn ghost">슬라이드 템플릿(PPTX) 다운</button>
+      </div>
+      <div class="results" id="achievements"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <small>CHEM·AI Lab · 화학공학 관점 실습 · 로컬 모의데이터 기반</small>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- 모달 -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-inner">
+      <button id="closeModal" class="modal-close">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+<script src="script.js"></script>
 </body>
 </html>
