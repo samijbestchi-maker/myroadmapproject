@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
+body {
+  font-family: 'Nanum Gothic', sans-serif;
+  margin: 0;
+  background: linear-gradient(180deg, #0b132b, #1c2541);
+  color: #f0f0f0;
+  line-height: 1.6;
+}
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+  background: radial-gradient(circle at center, #2dd4bf33, transparent),
+              url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=60') center/cover no-repeat;
+  color: white;
+}
+.hero h1 {
+  font-size: 2.4rem;
+  margin-bottom: 0.5em;
+}
+.hero button {
+  padding: 10px 24px;
+  background: #2dd4bf;
+  border: none;
+  color: #0b132b;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.section {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 20px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+h2 {
+  color: #2dd4bf;
+}
+.interactive {
+  margin-top: 20px;
+  text-align: center;
+}
+.water {
+  margin: 20px auto;
+  width: 300px;
+  height: 150px;
+  background: linear-gradient(to top, #0077be 60%, #00c3ff);
+  border-radius: 12px;
+  transition: filter 0.5s, background 0.5s;
+}
+footer {
+  text-align: center;
+  padding: 40px 10px;
+  color: #aaa;
+  font-size: 0.9em;
+}
